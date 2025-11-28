@@ -154,7 +154,7 @@ def main() -> int:
     )
     parser.add_argument(
         "--slack",
-        help="Send reports to Slack. Provide channel/user identifier: --slack #channel, --slack @user, or --slack C1234567890",
+        help="Send reports to Slack channel. Provide channel identifier: --slack #channel-name or --slack C1234567890",
         type=str,
     )
 

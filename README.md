@@ -181,10 +181,9 @@ To send reports to Slack, you need to:
    export SLACK_BOT_TOKEN=xoxb-your-token-here
    ```
 
-3. **Use the `--slack` flag with a channel or user identifier:**
+3. **Use the `--slack` flag with a channel identifier:**
    - Channel name: `--slack "#channel-name"` or `--slack channel-name`
    - Channel ID: `--slack C1234567890`
-   - User DM: `--slack "@username"` or `--slack U1234567890`
 
 **Note:** The token must be set as an environment variable (`SLACK_BOT_TOKEN`). It cannot be provided via config file or CLI flag for security reasons.
 
@@ -217,7 +216,7 @@ aws-finops [options]
 | `--s3-bucket`, `-s3` | S3 bucket name to export report files to. When specified, files are uploaded to S3 instead of saving locally. Requires `--s3-profile`. |
 | `--s3-prefix`, `-s3p` | S3 key prefix/folder path for report files (optional). Example: `reports/2025/january` |
 | `--s3-profile`, `-s3s` | AWS CLI profile to use for S3 uploads. Required when `--s3-bucket` is specified. |
-| `--slack` | Send reports to Slack. Provide channel/user identifier: `--slack #channel`, `--slack @user`, or `--slack C1234567890`. Requires `SLACK_BOT_TOKEN` environment variable. |
+| `--slack` | Send reports to Slack channel. Provide channel identifier: `--slack #channel-name` or `--slack C1234567890`. Requires `SLACK_BOT_TOKEN` environment variable. |
 
 ### Examples
 
@@ -264,9 +263,6 @@ aws-finops --all --report-name aws_dashboard_data --report-type csv --s3-bucket 
 # Export data to PDF and send to Slack channel (requires SLACK_BOT_TOKEN env var)
 export SLACK_BOT_TOKEN=xoxb-your-token-here
 aws-finops --all --report-name monthly_report --report-type pdf --slack "#finops-reports"
-
-# Export data to Slack DM (use @username or user ID)
-aws-finops --all --report-name monthly_report --report-type pdf --slack "@username"
 
 # Export multiple formats to Slack
 aws-finops --all --report-name monthly_report --report-type csv json pdf --slack "#finops-reports"
